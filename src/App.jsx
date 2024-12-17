@@ -1,16 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
 
 export default function App() {
 
-  function signUp(formData) {
+  function signUp(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
+    const formData = new FormData(event.target); // Access the form data
+    /*
     const email = formData.get("email")
     const password = formData.get("password")
     const employmentStatus = formData.get("employmentStatus")
     const dietaryRestrictions = formData.getAll("dietaryRestrictions")
     const favColor = formData.get("favColor")
     console.log(favColor)
-
+    */
+    console.log(Object.fromEntries(formData)); // Log form data as an object
   }
 
   return (
@@ -19,7 +21,7 @@ export default function App() {
       <h1>Signup</h1>
       <img src="/assets/image.png"></img>
       </div>
-      <form action={signUp}>
+      <form onSubmit={signUp}>
 
         <label htmlFor="email">Email:</label>
         <input id="email" defaultValue="joe@schmoe.com" type="email" name="email" placeholder="joe@schmoe.com" />
@@ -78,5 +80,3 @@ export default function App() {
     </section>
   )
 }
-
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
