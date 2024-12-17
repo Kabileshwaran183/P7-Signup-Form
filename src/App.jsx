@@ -6,13 +6,14 @@ export default function App() {
     const formData = new FormData(event.target); // Access the form data
     /*
     const email = formData.get("email")
-    const password = formData.get("password")
-    const employmentStatus = formData.get("employmentStatus")
-    const dietaryRestrictions = formData.getAll("dietaryRestrictions")
-    const favColor = formData.get("favColor")
-    console.log(favColor)
     */
-    console.log(Object.fromEntries(formData)); // Log form data as an object
+    const dietaryRestrictions = formData.getAll("dietaryRestrictions")
+    const data = Object.fromEntries(formData)
+    const allData = {
+          ...data,
+          dietaryRestrictions
+    }
+    console.log(allData); // Log form data as an object
   }
 
   return (
